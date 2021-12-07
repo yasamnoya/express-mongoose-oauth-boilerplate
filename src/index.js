@@ -1,4 +1,8 @@
 const app = require('./app');
+const mongooseConnection = require('./config/mongoose');
+
+mongooseConnection.once('open', () => console.log('Connected to database'));
+mongooseConnection.on('error', (e) => console.log(e));
 
 const { PORT } = process.env;
 
