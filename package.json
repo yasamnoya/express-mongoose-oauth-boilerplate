@@ -1,0 +1,38 @@
+{
+  "name": "express-mongoose-oauth-boilerplate",
+  "version": "1.0.0",
+  "description": "A boilerplate for building OAuth API using Node.js Express, Mongoose",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "env-cmd -f .env.dev nodemon src/index.js",
+    "start": "env-cmd -f .env.prod node src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yasamnoya/express-mongoose-oauth-boilerplate.git"
+  },
+  "author": "JN Yiunn",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/yasamnoya/express-mongoose-oauth-boilerplate/issues"
+  },
+  "homepage": "https://github.com/yasamnoya/express-mongoose-oauth-boilerplate#readme",
+  "dependencies": {
+    "connect-mongo": "^4.6.0",
+    "cors": "^2.8.5",
+    "env-cmd": "^10.1.0",
+    "express": "^4.17.1",
+    "express-session": "^1.17.2",
+    "mongoose": "^6.0.15",
+    "morgan": "^1.10.0",
+    "passport": "^0.5.0",
+    "session": "^0.1.0"
+  },
+  "devDependencies": {
+    "eslint": "^8.4.1",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.25.3",
+    "nodemon": "^2.0.15"
+  }
+}
