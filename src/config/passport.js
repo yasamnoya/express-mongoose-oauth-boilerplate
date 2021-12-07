@@ -1,6 +1,7 @@
 const passport = require('passport');
 const GitHubStrategy = require('passport-github2').Strategy;
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
+const FacebookStrategy = require('passport-facebook');
 const { User } = require('../models');
 
 passport.serializeUser((user, done) => {
@@ -52,6 +53,33 @@ passport.use(new GoogleStrategy(
           googleId: profile.id,
           username: profile.displayName,
           avatarUrl: profile._json.picture,
+        });
+      }
+
+      await user.save();
+      cb(null, user);
+    } catch (e) {
+      console.log(e);
+      cb(e, null);
+    }
+  }),
+));
+
+passport.use(new FacebookStrategy(
+  {
+    clientID: process.env.FACEBOOK_APP_ID,
+    clientSecret: process.env.FACEBOOK_APP_SECRET,
+    callbackURL: `${process.env.BASE_URL}/auth/facebook/callback`,
+    profileFields: ['id', 'displayName', 'photos'],
+  },
+  (async (accessToken, refreshToken, profile, cb) => {
+    try {
+      let user = await User.findOne({ facebookId: profile.id });
+      if (!user) {
+        user = new User({
+          facebookId: profile.id,
+          username: profile.displayName,
+          avatarUrl: profile.photos[0].value,
         });
       }
 

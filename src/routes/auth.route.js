@@ -32,4 +32,17 @@ router.get(
   },
 );
 
+router.get(
+  '/facebook',
+  passport.authenticate('facebook'),
+);
+
+router.get(
+  '/facebook/callback',
+  passport.authenticate('facebook'),
+  (req, res) => {
+    res.redirect('/protected');
+  },
+);
+
 module.exports = router;
