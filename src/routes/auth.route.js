@@ -19,4 +19,17 @@ router.get(
   },
 );
 
+router.get(
+  '/google',
+  passport.authenticate('google', { scope: ['profile'] }),
+);
+
+router.get(
+  '/google/callback',
+  passport.authenticate('google'),
+  (req, res) => {
+    res.redirect('/protected');
+  },
+);
+
 module.exports = router;

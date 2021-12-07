@@ -4,6 +4,9 @@ const userSchema = new mongoose.Schema({
   githubId: {
     type: String,
   },
+  googleId: {
+    type: String,
+  },
   username: {
     type: String,
     trim: true,
